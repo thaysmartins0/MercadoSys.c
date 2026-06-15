@@ -31,7 +31,7 @@ int main(void) {
 
     do {
         printf("\n=============================\n");
-        printf("--- MERCADO - MENU PRINCIPAL ---\n");
+        printf("--- MERCADO FICR - MENU PRINCIPAL ---\n");
         printf("=============================\n");
         printf("1. Módulo de Produtos\n");
         printf("2. Módulo de Clientes\n");
