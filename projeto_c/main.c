@@ -6,6 +6,7 @@
 void menu_cliente(void);
 void menu_pedido(void);
 void menu_produto(void);
+void limpar_buffer(void);
 // ==========================================
 // CONSTANTES E ESTRUTURAS
 // ==========================================
@@ -24,7 +25,53 @@ typedef struct {
     int status;        // 1: Ativo, 0: Inativo (Soft Delete)
 } Produto;
 #pragma pack(pop)
+int main(void) {
+    int opcao = -1;
+    int resultado;
 
+    do {
+        printf("\n=============================\n");
+        printf("--- MERCADO - MENU PRINCIPAL ---\n");
+        printf("=============================\n");
+        printf("1. Módulo de Produtos\n");
+        printf("2. Módulo de Clientes\n");
+        printf("3. Módulo de Pedidos\n");
+        printf("0. Sair do Sistema\n");
+        printf("=============================\n");
+        printf("Escolha uma opcao: ");
+        
+        resultado = scanf("%d", &opcao);
+
+        if (resultado == EOF) {
+            printf("\n[AVISO] Interrupcao detectada no fluxo de entrada. Encerrando modulo...\n");
+            opcao = 0;
+        } else if (resultado != 1) {
+            limpar_buffer();
+            opcao = -1;
+        } else {
+            limpar_buffer();
+        }
+
+        switch (opcao) {
+            case 1:
+                menu_produto();
+                break;
+            case 2:
+                menu_cliente();
+                break;
+            case 3:
+                menu_pedido();
+                break;
+            case 0:
+                printf("Saindo do sistema...\n");
+                break;
+            default:
+                printf("Opção inválida!\n");
+        }
+    } while (opcao != 0);
+
+    return 0;
+}
 // ==========================================
 // FUNÇÕES AUXILIARES DE SEGURANÇA
 // ==========================================
