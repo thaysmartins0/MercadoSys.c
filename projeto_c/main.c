@@ -2,7 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-
+// Declaração dos outros módulos
+void menu_cliente(void);
+void menu_pedido(void);
+void menu_produto(void);
 // ==========================================
 // CONSTANTES E ESTRUTURAS
 // ==========================================
@@ -302,13 +305,53 @@ void menu_produtos() {
             limpar_buffer();
         }
 
-        switch (opcao) {
+        switch(opcao) {
+    case 1:
+        menu_produto();
+        // Aqui roda o seu código de produtos que já está aí
+        break;
+    case 2:
+        menu_cliente(); // Chama o código do arquivo modulo_cliente.c
+        break;
+    case 3:
+        menu_pedido();  // Chama o código do arquivo modulo_pedido.c
+        break;
+    case 0:
+        printf("Saindo do sistema...\n");
+        break;
+    default:
+        printf("Opção inválida!\n");
+        } 
+    } while (opcao !=0);
+}
+void menu_produto(void) {
+    int opcao_prod = -1;
+    do {
+        printf("\n=============================\n");
+        printf("--- MÓDULO DE PRODUTOS ---\n");
+        printf("=============================\n");
+        printf("1. Cadastrar Produto\n");
+        printf("2. Consultar Produto\n");
+        printf("3. Alterar Produto\n");
+        printf("4. Excluir Produto\n");
+        printf("0. Voltar ao Menu Principal\n");
+        printf("=============================\n");
+        printf("Escolha uma opcao: ");
+        
+        if (scanf("%d", &opcao_prod) != 1) {
+            limpar_buffer();
+            opcao_prod = -1;
+        } else {
+            limpar_buffer();
+        }
+
+        switch (opcao_prod) {
             case 1: cadastrar_produto(); break;
             case 2: consultar_produto(); break;
             case 3: alterar_produto(); break;
             case 4: excluir_produto(); break;
-            case 0: printf("Retornando ao menu do ERP...\n"); break;
-            default: printf("[ERRO] Opcao invalida!\n");
+            case 0: printf("Voltando ao menu principal...\n"); break;
+            default: printf("Opção inválida!\n");
         }
-    } while (opcao != 0);
+    } while (opcao_prod != 0);
 }
